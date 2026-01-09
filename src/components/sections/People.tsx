@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -9,7 +9,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useEffect } from "react";
 
 export const People = () => {
     const members = [
@@ -42,9 +41,6 @@ export const People = () => {
         },
     ];
 
-    // Duplicate for infinite effect
-    const duplicatedMembers = [...members, ...members, ...members];
-
     return (
         <section id="people" className="py-24 md:py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6 lg:px-12">
@@ -63,73 +59,62 @@ export const People = () => {
                         </p>
                     </motion.div>
                 </div>
-            </div>
 
-              {/* Horizontal Scroll with Snapping */}
-        <div className="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
-          {members.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="min-w-[85vw] md:min-w-[400px] snap-center"
-            >
-              <Card className="group relative overflow-hidden rounded-none border-none shadow-xl bg-slate-50 h-full flex flex-col">
-                <div className="relative aspect-[4/3] overflow-hidden shrink-0">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-white text-[10px] font-black px-3 py-1 tracking-[0.2em]">
-                      {member.tag}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                {/* Horizontal Scroll with Snapping */}
+                <div className="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+                    {members.map((member, index) => (
+                        <motion.div
+                            key={member.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.2 }}
+                            className="min-w-[85vw] md:min-w-[400px] snap-center"
+                        >
+                            <Card className="group relative overflow-hidden rounded-none border-none shadow-xl bg-slate-50 h-full flex flex-col">
+                                <div className="relative aspect-[4/3] overflow-hidden shrink-0">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute top-4 left-4">
+                                        <span className="bg-primary text-white text-[10px] font-black px-3 py-1 tracking-[0.2em]">
+                                            {member.tag}
+                                        </span>
+                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                                </div>
+                                <CardContent className="p-8 flex-grow flex flex-col">
+                                    <div className="mb-4">
+                                        <span className="text-xs font-bold tracking-widest text-primary uppercase block mb-1">
+                                            {member.role}
+                                        </span>
+                                        <h3 className="text-2xl font-bold">{member.name}</h3>
+                                    </div>
+                                    <p className="text-sm font-medium leading-relaxed italic mb-6">
+                                        {member.message}
+                                    </p>
+
+                                    <div className="mt-auto">
+                                        <Accordion type="single" collapsible className="w-full">
+                                            <AccordionItem value="interview" className="border-none">
+                                                <AccordionTrigger className="text-xs font-bold tracking-widest text-primary hover:no-underline py-2">
+                                                    INTERVIEW READ MORE
+                                                </AccordionTrigger>
+                                                <AccordionContent className="text-sm text-foreground/70 leading-relaxed pt-2">
+                                                    {member.interview}
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
                 </div>
-                <CardContent className="p-8 flex-grow flex flex-col">
-                  <div className="mb-4">
-                    <span className="text-xs font-bold tracking-widest text-primary uppercase block mb-1">
-                      {member.role}
-                    </span>
-                    <h3 className="text-2xl font-bold">{member.name}</h3>
-                  </div>
-                  <p className="text-sm font-medium leading-relaxed italic mb-6">
-                    {member.message}
-                  </p>
-                  
-                  <div className="mt-auto">
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="interview" className="border-none">
-                        <AccordionTrigger className="text-xs font-bold tracking-widest text-primary hover:no-underline py-2">
-                          INTERVIEW READ MORE
-                        </AccordionTrigger>
-                        <AccordionContent className="text-sm text-foreground/70 leading-relaxed pt-2">
-                          {member.interview}
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <style jsx global>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-    </section >
-  );
+            </div>
+        </section>
+    );
 };
