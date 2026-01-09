@@ -28,7 +28,7 @@ export const Hero = () => {
                     className="mb-6"
                 >
                     <span className="inline-block px-4 py-1 border border-white/30 rounded-full text-xs font-bold tracking-[0.2em] mb-4 bg-white/10 backdrop-blur-md">
-                        CAI RECRUITMENT 2026
+                        CAI RECRUITMENT
                     </span>
                 </motion.div>
 
@@ -39,7 +39,7 @@ export const Hero = () => {
                     className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-8"
                 >
                     教育業界の<br />
-                    <span className="text-primary italic">常識</span>を覆す
+                    <span className="text-primary italic">常識 </span>を覆す
                 </motion.h1>
 
                 <motion.p

@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const People = () => {
     const members = [
@@ -12,30 +16,33 @@ export const People = () => {
             id: 1,
             name: "田中 健太",
             role: "校舎長 / 2022年入社",
-            message: "「生徒の人生を変える瞬間に立ち会える。これ以上のやりがいはありません。」",
+            message: "「生徒の自学自習を支える。それが逆転合格への最短距離です」",
+            interview: "武田塾の魅力は『授業をしない』という徹底した合理性にあります。生徒が自ら学ぶ力を身につけていく姿を間近で見られるのは、教育者として最高の喜びです。",
             image: "/images/staff_interview_portrait.png",
             tag: "FIELD",
         },
         {
             id: 2,
             name: "佐藤 未希",
-            role: "教務部長 / 2020年入社",
-            message: "「合理性と熱量を両立させた武田塾の仕組みを、さらに進化させたい。」",
-            image: "/images/staff_interview_portrait.png", // Reusing image since only 1 portait available
-            tag: "ADMIN",
+            role: "教務リーダー / 2020年入社",
+            message: "「合理性と熱量。この二つが不可能を可能にします」",
+            interview: "私たちは単に教えるのではなく、学習の仕方を管理します。ITツールを駆使して進捗を可視化し、一歩ずつ志望校に近づくプロセスを全力でサポートしています。",
+            image: "/images/staff_interview_portrait.png",
+            tag: "LEAD",
         },
         {
             id: 3,
             name: "鈴木 勇気",
-            role: "エンジニア / 2023年入社",
-            message: "「EdTechの最前線で、学びを科学するツールを開発しています。」",
+            role: "校舎長候補 / 2023年入社",
+            message: "「EdTechの力で教育の常識を塗り替えたい」",
+            interview: "前職は異業種でしたが、武田塾の理念に共感して入社しました。未経験でも研修が充実しており、現在は校舎長候補として経営と教育の両面を学んでいます。",
             image: "/images/technical.png",
-            tag: "TECH",
+            tag: "CANDIDATE",
         },
     ];
 
     return (
-        <section id="people" className="py-24 md:py-32 bg-white">
+        <section id="people" className="py-24 md:py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6 lg:px-12">
                 <div className="text-center mb-16">
                     <motion.div
@@ -48,12 +55,13 @@ export const People = () => {
                             現場を創る、プロフェッショナルたち。
                         </h2>
                         <p className="text-foreground/60 max-w-2xl mx-auto italic">
-                            日本の知力を底上げする、個性豊かな仲間たちをご紹介します。
+                            日本の知力を底上げする、個性豊かな仲間たちのインタビュー。
                         </p>
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Horizontal Scroll on Mobile, Grid on Desktop */}
+                <div className="flex overflow-x-auto pb-8 md:grid md:grid-cols-3 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
                     {members.map((member, index) => (
                         <motion.div
                             key={member.id}
@@ -61,9 +69,10 @@ export const People = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.2 }}
+                            className="min-w-[85vw] md:min-w-0 snap-center"
                         >
-                            <Card className="group relative overflow-hidden rounded-none border-none shadow-xl bg-slate-50 cursor-pointer">
-                                <div className="relative aspect-[3/4] overflow-hidden">
+                            <Card className="group relative overflow-hidden rounded-none border-none shadow-xl bg-slate-50 h-full flex flex-col">
+                                <div className="relative aspect-[4/3] overflow-hidden shrink-0">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -77,9 +86,9 @@ export const People = () => {
                                     </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                                 </div>
-                                <CardContent className="p-8 relative z-10 transition-colors duration-500 group-hover:bg-primary group-hover:text-white">
+                                <CardContent className="p-8 flex-grow flex flex-col">
                                     <div className="mb-4">
-                                        <span className="text-xs font-bold tracking-widest text-primary group-hover:text-white/80 transition-colors uppercase block mb-1">
+                                        <span className="text-xs font-bold tracking-widest text-primary uppercase block mb-1">
                                             {member.role}
                                         </span>
                                         <h3 className="text-2xl font-bold">{member.name}</h3>
@@ -87,21 +96,34 @@ export const People = () => {
                                     <p className="text-sm font-medium leading-relaxed italic mb-6">
                                         {member.message}
                                     </p>
-                                    <div className="flex items-center gap-2 text-primary group-hover:text-white font-bold text-xs tracking-widest transition-colors">
-                                        READ STORY <ArrowRight className="w-4 h-4" />
+
+                                    <div className="mt-auto">
+                                        <Accordion type="single" collapsible className="w-full">
+                                            <AccordionItem value="interview" className="border-none">
+                                                <AccordionTrigger className="text-xs font-bold tracking-widest text-primary hover:no-underline py-2">
+                                                    INTERVIEW READ MORE
+                                                </AccordionTrigger>
+                                                <AccordionContent className="text-sm text-foreground/70 leading-relaxed pt-2">
+                                                    {member.interview}
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
                                     </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
                     ))}
                 </div>
-
-                <div className="mt-16 text-center">
-                    <Button variant="outline" className="rounded-none border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold h-14 px-10 transition-all">
-                        インタビュー一覧をみる
-                    </Button>
-                </div>
             </div>
+            <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
         </section>
     );
 };

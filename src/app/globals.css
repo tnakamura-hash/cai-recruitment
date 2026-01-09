@@ -54,7 +54,8 @@
   --card-foreground: oklch(0.2 0.02 20);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.02 20);
-  --primary: oklch(0.6 0.18 25); /* Takeda Juku Crimson Red */
+  --primary: oklch(47.471% 0.17334 26.956);
+  /* Takeda Juku Crimson Red */
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.96 0.01 20);
   --secondary-foreground: oklch(0.2 0.02 20);
@@ -119,6 +120,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

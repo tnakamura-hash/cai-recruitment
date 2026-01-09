@@ -44,7 +44,7 @@ export const Culture = () => {
         {
             icon: <Heart className="w-8 h-8 text-primary" />,
             label: "有給取得率",
-            value: "80",
+            value: "98",
             unit: "%",
             description: "自分と家族の時間も大切にできます。",
         },
