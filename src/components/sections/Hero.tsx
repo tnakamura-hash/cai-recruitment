@@ -61,9 +61,6 @@ export const Hero = () => {
                     <Button size="lg" className="w-full sm:w-auto rounded-none font-bold py-8 px-12 text-lg bg-primary hover:bg-primary/90">
                         ENTRY
                     </Button>
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-none font-bold py-8 px-12 text-lg border-white text-white hover:bg-white hover:text-primary transition-all duration-300">
-                        VIEW JOBS
-                    </Button>
                 </motion.div>
             </div>
 
