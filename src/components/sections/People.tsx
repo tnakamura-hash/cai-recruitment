@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -9,6 +9,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useEffect } from "react";
 
 export const People = () => {
     const members = [
@@ -41,6 +42,9 @@ export const People = () => {
         },
     ];
 
+    // Duplicate for infinite effect
+    const duplicatedMembers = [...members, ...members, ...members];
+
     return (
         <section id="people" className="py-24 md:py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6 lg:px-12">
@@ -59,17 +63,29 @@ export const People = () => {
                         </p>
                     </motion.div>
                 </div>
+            </div>
 
-                {/* Horizontal Scroll on Mobile, Grid on Desktop */}
-                <div className="flex overflow-x-auto pb-8 md:grid md:grid-cols-3 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
-                    {members.map((member, index) => (
-                        <motion.div
-                            key={member.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.2 }}
-                            className="min-w-[85vw] md:min-w-0 snap-center"
+            {/* Infinite Carousel using Framer Motion */}
+            <div className="relative w-full overflow-hidden py-10">
+                <motion.div
+                    className="flex gap-8 px-4"
+                    animate={{
+                        x: [0, -1200], // Adjust based on card width + gap
+                    }}
+                    transition={{
+                        x: {
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            duration: 30, // Speed of scrolling
+                            ease: "linear",
+                        },
+                    }}
+                    whileHover={{ animationPlayState: 'paused' }}
+                >
+                    {duplicatedMembers.map((member, index) => (
+                        <div
+                            key={`${member.id}-${index}`}
+                            className="min-w-[350px] md:min-w-[450px]"
                         >
                             <Card className="group relative overflow-hidden rounded-none border-none shadow-xl bg-slate-50 h-full flex flex-col">
                                 <div className="relative aspect-[4/3] overflow-hidden shrink-0">
@@ -111,19 +127,10 @@ export const People = () => {
                                     </div>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </div>
                     ))}
-                </div>
+                </motion.div>
             </div>
-            <style jsx global>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
         </section>
     );
 };
