@@ -51,17 +51,17 @@ export const Culture = () => {
     ];
 
     return (
-        <section id="culture" className="py-24 md:py-32 bg-slate-50">
+        <section id="culture" className="py-16 md:py-32 bg-slate-50">
             <div className="container mx-auto px-6 lg:px-12">
-                <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
+                <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-primary font-bold tracking-[0.2em] text-sm mb-4 block">NUMBERS</span>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
-                            データで知る、<br />CAIのカルチャー。
+                        <span className="text-primary font-bold tracking-[0.2em] text-sm mb-2 md:mb-4 block">NUMBERS</span>
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-balance">
+                            データで知る、<br className="block md:hidden" /><span className="inline-block text-primary">CAI</span>のカルチャー。
                         </h2>
                     </motion.div>
                     <motion.p
@@ -69,14 +69,14 @@ export const Culture = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-foreground/60 max-w-sm"
+                        className="text-foreground/60 max-w-sm text-balance"
                     >
-                        教育業界の「当たり前」をデータから変えていく。
+                        教育業界の「当たり前」をデータから変えていく。<br className="block md:hidden" />
                         私たちの働きやすさと熱量の源泉を公開しています。
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     {metrics.map((item, index) => (
                         <motion.div
                             key={item.label}
@@ -86,8 +86,8 @@ export const Culture = () => {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             <Card className="rounded-none border-none shadow-none bg-white hover:bg-primary group transition-colors duration-500">
-                                <CardContent className="p-10 flex flex-col items-center text-center">
-                                    <div className="mb-6 p-4 rounded-full bg-slate-50 group-hover:bg-white transition-colors">
+                                <CardContent className="p-8 md:p-10 flex flex-col items-center text-center">
+                                    <div className="mb-4 md:mb-6 p-4 rounded-full bg-slate-50 group-hover:bg-white transition-colors">
                                         {item.icon}
                                     </div>
                                     <span className="text-xs font-bold tracking-widest text-foreground/50 group-hover:text-white/60 mb-2 uppercase">

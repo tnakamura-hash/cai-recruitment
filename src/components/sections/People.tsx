@@ -18,7 +18,7 @@ export const People = () => {
             role: "校舎長 / 2022年入社",
             message: "「生徒の自学自習を支える。それが逆転合格への最短距離です」",
             interview: "武田塾の魅力は『授業をしない』という徹底した合理性にあります。生徒が自ら学ぶ力を身につけていく姿を間近で見られるのは、教育者として最高の喜びです。",
-            image: "/images/staff_interview_portrait.png",
+            image: "/images/staff_tanaka.jpg",
             tag: "FIELD",
         },
         {
@@ -27,7 +27,7 @@ export const People = () => {
             role: "教務リーダー / 2020年入社",
             message: "「合理性と熱量。この二つが不可能を可能にします」",
             interview: "私たちは単に教えるのではなく、学習の仕方を管理します。ITツールを駆使して進捗を可視化し、一歩ずつ志望校に近づくプロセスを全力でサポートしています。",
-            image: "/images/staff_interview_portrait.png",
+            image: "/images/staff_sato.jpg",
             tag: "LEAD",
         },
         {
@@ -36,7 +36,7 @@ export const People = () => {
             role: "校舎長候補 / 2023年入社",
             message: "「EdTechの力で教育の常識を塗り替えたい」",
             interview: "前職は異業種でしたが、武田塾の理念に共感して入社しました。未経験でも研修が充実しており、現在は校舎長候補として経営と教育の両面を学んでいます。",
-            image: "/images/technical.png",
+            image: "/images/staff_suzuki.jpg",
             tag: "CANDIDATE",
         },
     ];
@@ -51,17 +51,18 @@ export const People = () => {
                         viewport={{ once: true }}
                     >
                         <span className="text-primary font-bold tracking-[0.2em] text-sm mb-4 block uppercase">People & Interviews</span>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 underline decoration-primary decoration-4 underline-offset-8">
-                            現場を創る、プロフェッショナルたち。
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-balance relative inline-block pb-4">
+                            現場を創る、<br className="block md:hidden" /><span className="inline-block">プロフェッショナル</span>たち。
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-primary" />
                         </h2>
-                        <p className="text-foreground/60 max-w-2xl mx-auto italic">
-                            日本の知力を底上げする、個性豊かな仲間たちのインタビュー。
+                        <p className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto italic text-balance">
+                            日本の知力を底上げする、<br className="block md:hidden" />個性豊かな仲間たちのインタビュー。
                         </p>
                     </motion.div>
                 </div>
 
                 {/* Horizontal Scroll with Snapping */}
-                <div className="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+                <div className="flex items-start overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
                     {members.map((member, index) => (
                         <motion.div
                             key={member.id}

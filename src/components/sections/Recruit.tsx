@@ -13,7 +13,7 @@ import { ArrowUpRight, Mail, Ban } from "lucide-react";
 export const Recruit = () => {
     const activeJobs = [
         {
-            title: "教室長・校舎長候補（総合職）",
+            title: "校舎長候補・各拠点",
             type: "正社員",
             tags: ["未経験歓迎", "急成長企業", "研修充実", "実力主義"],
             description: "「授業をしない」武田塾の校舎運営全般をお任せします。生徒のカウンセリング、講師のマネジメント、広報活動、そして校舎の経営改善。教育業界の常識を覆し、生徒の逆転合格をプロデュースする情熱ある方を募集しています。未経験からでも、徹底した研修カリキュラムで校舎長としてのスキルを身につけることが可能です。",
@@ -35,8 +35,9 @@ export const Recruit = () => {
         }
     ];
 
-    const indeedLink = "https://jp.indeed.com/cmp/%E6%A0%BA%E5%BC%8F%E4%BC%9A%E7%A4%BEcai-2";
-    const contactEmail = "rrcruit@cai.co.jp";
+    const indeedLink = "https://jp.indeed.com/cmp/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BEcai-2";
+    const contactEmail = "recruit@cai.co.jp";
+    const googleFormUrl = "#"; // TODO: セットアップしたGoogleフォームのURLをここに貼り付けてください
 
     return (
         <section id="recruit" className="py-24 md:py-32 bg-slate-900 text-white">
@@ -49,11 +50,11 @@ export const Recruit = () => {
                         className="text-center mb-16"
                     >
                         <span className="text-primary font-bold tracking-[0.2em] text-sm mb-4 block">JOB OPENING</span>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-balance">
                             現在募集中のポジション
                         </h2>
-                        <p className="text-white/60">
-                            私たちは、生徒の未来を本気で底上げしたいと願う「校舎長」候補を募集しています。
+                        <p className="text-base md:text-lg text-white/60 text-balance">
+                            私たちは、生徒の未来を本気に底上げしたいと願う<br className="block md:hidden" /><span className="inline-block text-white">「校舎長」</span>候補を募集しています。
                         </p>
                     </motion.div>
 
@@ -131,10 +132,12 @@ export const Recruit = () => {
                         viewport={{ once: true }}
                         className="mt-20 p-12 border-2 border-primary bg-primary/5 text-center"
                     >
-                        <h3 className="text-3xl font-bold mb-6">校舎運営のプロとして、<br className="md:hidden" />未来を創りませんか？</h3>
-                        <p className="text-white/60 mb-10">
+                        <h3 className="text-2xl md:text-4xl font-bold mb-6 text-balance">
+                            校舎運営のプロとして、<br className="block md:hidden" />未来を創りませんか？
+                        </h3>
+                        <p className="text-base md:text-lg text-white/60 mb-10 text-balance">
                             教育の常識を覆すのは、あなたの情熱です。<br className="hidden md:block" />
-                            CAIは、次代の教育リーダーとなる仲間を募集しています。
+                            <span className="inline-block text-white">株式会社CAI</span>は、次代の教育リーダーとなる仲間を募集しています。
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <Button asChild size="lg" className="w-full sm:w-auto rounded-none font-bold py-8 px-12 text-lg bg-primary hover:bg-primary/90 text-white">
@@ -142,8 +145,8 @@ export const Recruit = () => {
                                     エントリーする
                                 </a>
                             </Button>
-                            <a href={`mailto:${contactEmail}`} className="text-sm font-bold tracking-widest hover:text-primary transition-colors flex items-center gap-2">
-                                <Mail className="w-4 h-4" /> MAIL INQUIRY
+                            <a href={googleFormUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold tracking-widest hover:text-primary transition-colors flex items-center gap-2">
+                                <Mail className="w-4 h-4" /> お問い合わせフォーム
                             </a>
                         </div>
                     </motion.div>

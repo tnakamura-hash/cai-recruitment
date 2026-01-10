@@ -29,9 +29,9 @@ export const Mission = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-10 leading-relaxed border-l-4 border-primary pl-6">
-                            教育の常識を、<br />
-                            IT×情熱でアップデートする。
+                        <h2 className="text-3xl md:text-5xl font-bold mb-10 leading-relaxed border-l-4 border-primary pl-6 text-balance">
+                            教育の常識を、<br className="block md:hidden" />
+                            <span className="inline-block">IT×情熱</span>で<br className="block md:hidden" />アップデートする。
                         </h2>
                     </motion.div>
 
@@ -40,12 +40,12 @@ export const Mission = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="space-y-6 text-lg text-foreground/80 leading-loose"
+                        className="space-y-6 text-base md:text-lg text-foreground/80 leading-loose text-balance"
                     >
                         <p>
-                            私たちCAIは、武田塾の運営を通じて、日本の教育のあり方を再定義しています。
+                            私たち<span className="inline-block font-bold text-foreground">株式会社CAI</span>は、<span className="inline-block font-bold text-foreground">武田塾</span>の運営を通じて、日本の教育のあり方を再定義しています。
                             「授業を受けるだけで満足していないか？」「本当に自分の力で解けるようになっているか？」
-                            そんな疑問から生まれたのが、自学自習を徹底的に管理する武田塾のメソッドです。
+                            そんな疑問から生まれたのが、<span className="inline-block">自学自習</span>を徹底的に管理する<span className="inline-block">武田塾</span>のメソッドです。
                         </p>
                         <p>
                             合理性を追求するITの力と、生徒の心に火を灯す熱い情熱。
@@ -57,21 +57,47 @@ export const Mission = () => {
                         </p>
                     </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="mt-16 p-8 bg-secondary border border-border flex items-center gap-8 group cursor-default"
-                    >
-                        <div className="text-primary text-5xl font-black italic opacity-20 group-hover:opacity-100 transition-opacity duration-500 shrink-0">
-                            01
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold mb-2">合理的な教育</h3>
-                            <p className="text-sm text-foreground/60">無駄を削ぎ落とし、最短で結果を出す「自学自習」の支援を追求します。</p>
-                        </div>
-                    </motion.div>
+                    <div className="mt-16 space-y-4">
+                        {[
+                            {
+                                id: "01",
+                                title: "合理的な教育",
+                                description: "無駄を削ぎ落とし、最短で結果を出す「自学自習」の支援を追求します。"
+                            },
+                            {
+                                id: "02",
+                                title: "逆転合格のプロデュース",
+                                description: "偏差値に関わらず、生徒の可能性を最大化し、劇的な成功体験を提供します。"
+                            },
+                            {
+                                id: "03",
+                                title: "ITによる教育革新",
+                                description: "現場の経験と最新技術を融合させ、効率的かつ均質な教育サービスを構築します。"
+                            },
+                            {
+                                id: "04",
+                                title: "次世代リーダーの育成",
+                                description: "自ら考え、行動し、社会をリードする人材を教育を通じて輩出します。"
+                            }
+                        ].map((item, index) => (
+                            <motion.div
+                                key={item.id}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.1 + (index * 0.15) }}
+                                className="p-8 bg-secondary border border-border flex items-center gap-8 group cursor-default"
+                            >
+                                <div className="text-primary text-5xl font-black italic opacity-20 group-hover:opacity-100 transition-opacity duration-500 shrink-0">
+                                    {item.id}
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                                    <p className="text-sm text-foreground/60">{item.description}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
 

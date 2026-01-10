@@ -4,6 +4,7 @@ import { Mission } from "@/components/sections/Mission";
 import { Culture } from "@/components/sections/Culture";
 import { People } from "@/components/sections/People";
 import { Recruit } from "@/components/sections/Recruit";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Culture />
       <People />
       <Recruit />
+      <Footer />
     </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -25,6 +26,8 @@ export const Header = () => {
         { name: "RECRUIT", href: "#recruit" },
     ];
 
+    const indeedLink = "https://jp.indeed.com/cmp/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BEcai-2";
+
     return (
         <header
             className={cn(
@@ -35,12 +38,16 @@ export const Header = () => {
             )}
         >
             <nav className="max-w-7xl mx-auto flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <Link href="/" className="text-xl font-bold tracking-tighter flex items-center">
-                        <span className={cn("transition-colors", isScrolled ? "text-primary" : "text-primary")}>CAI</span>
-                        <span className={cn("ml-1 text-sm font-medium tracking-widest", isScrolled ? "text-foreground" : isScrolled ? "text-foreground" : "text-white")}>
-                            RECRUIT
-                        </span>
+                <div className="flex items-center">
+                    <Link href="/" className="flex items-center">
+                        <div className="relative w-32 h-10 md:w-48 md:h-14">
+                            <Image
+                                src="/images/logo-new.png"
+                                alt="CAI Logo"
+                                fill
+                                className="object-contain object-left"
+                            />
+                        </div>
                     </Link>
                 </div>
 
@@ -58,8 +65,10 @@ export const Header = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <Button size="lg" className="rounded-none font-bold px-8 bg-primary hover:bg-primary/90 text-white">
-                        ENTRY
+                    <Button asChild size="lg" className="rounded-none font-bold px-8 bg-primary hover:bg-primary/90 text-white">
+                        <a href={indeedLink} target="_blank" rel="noopener noreferrer">
+                            ENTRY
+                        </a>
                     </Button>
                 </div>
 
@@ -95,8 +104,10 @@ export const Header = () => {
                         {link.name}
                     </Link>
                 ))}
-                <Button size="lg" className="mt-4 rounded-none font-bold px-12 bg-primary">
-                    ENTRY
+                <Button asChild size="lg" className="mt-4 rounded-none font-bold px-12 bg-primary">
+                    <a href={indeedLink} target="_blank" rel="noopener noreferrer">
+                        ENTRY
+                    </a>
                 </Button>
             </div>
         </header>
