@@ -32,7 +32,7 @@ export const Culture = () => {
             label: "社員数",
             value: "30",
             unit: "人",
-            description: "元々校舎数だったので変更した。",
+            description: "全国の仲間と連携しながら成長できます。",
         },
         {
             icon: <Calendar className="w-8 h-8 text-primary" />,

@@ -36,7 +36,6 @@ export const Recruit = () => {
     ];
 
     const indeedLink = "https://jp.indeed.com/cmp/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BEcai-2";
-    const contactEmail = "recruit@cai.co.jp";
     const googleFormUrl = "#"; // TODO: セットアップしたGoogleフォームのURLをここに貼り付けてください
 
     return (
